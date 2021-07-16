@@ -27,4 +27,12 @@ export class DetailsComponent implements OnInit {
     this.router.navigate(['edit'], this.navigationExtras);
   }
 
+  onDelete(): void {
+    alert('Eliminado');
+  }
+
+  onGoBackToList(): void {
+    this.router.navigate(['list']);
+  }
+
 }
