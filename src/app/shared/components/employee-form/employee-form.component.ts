@@ -41,6 +41,12 @@ employee: Employee;
     }
   }
 
+  isValidField (field: string):string {
+    const validateField = this.employeeForm.get(field);
+    return ( !validateField.valid && validateField.touched)
+      ? 'is-invalid': validateField.touched ? 'is-valid': '';
+  };
+
   private initForm():void {
     this.employeeForm = this.fb.group({
       nombre: ['', [Validators.required]],

@@ -1,18 +1,31 @@
 <form class="mt-3 col-md-8 offset-md-2" (ngSubmit)="onSave()" [formGroup]="employeeForm">
   <div class="row g-3">
     <div class="col">
-      <input type="text" class="form-control m-2" placeholder="Nombre" formControlName="nombre">
+      <input type="text" class="form-control m-2" placeholder="Nombre" formControlName="nombre" [class]="isValidField('nombre')">
+      <div class="invalid-feedback m-2">
+        <span *ngIf="employeeForm.get('nombre').errors?.required">Este campo es requerido</span>
+      </div>
     </div>
     <div class="col">
-      <input type="text" class="form-control m-2" placeholder="Apellido" formControlName="apellido">
+      <input type="text" class="form-control m-2" placeholder="Apellido" formControlName="apellido" [class]="isValidField('apellido')">
+      <div class="invalid-feedback m-2">
+        <span *ngIf="employeeForm.get('apellido').errors?.required">Este campo es requerido</span>
+      </div>
     </div>
   </div>
   <div class="row g-3">
     <div class="col">
-      <input type="text" class="form-control m-2" placeholder="email" formControlName="email">
+      <input type="text" class="form-control m-2" placeholder="email" formControlName="email" [class]="isValidField('email')">
+      <div class="invalid-feedback m-2">
+        <span *ngIf="employeeForm.get('email').errors?.required">Este campo es requerido</span>
+        <span *ngIf="employeeForm.get('email').errors?.pattern">Ingresa un email valido</span>
+      </div>
     </div>
     <div class="col">
-      <input type="text" class="form-control m-2" placeholder="Fecha Inicio 01/01/2021" formControlName="fecha">
+      <input type="text" class="form-control m-2" placeholder="Fecha Inicio 01/01/2021" formControlName="fecha" [class]="isValidField('fecha')">
+      <div class="invalid-feedback m-2">
+        <span *ngIf="employeeForm.get('fecha').errors?.required">Este campo es requerido</span>
+      </div>
     </div>
   </div>
 
