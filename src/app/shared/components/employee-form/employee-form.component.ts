@@ -1,3 +1,4 @@
+import { EmployeesService } from './../../../pages/employees/employees.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ employee: Employee;
   employeeForm: FormGroup;
   private isEmail = /\S+@\S+\.\S+/;
 
-  constructor( private router: Router, private fb: FormBuilder ) {
+  constructor( private router: Router, private fb: FormBuilder, private employeesSvc: EmployeesService ) {
     this.initForm();
 
     const navigation = this.router.getCurrentNavigation();
@@ -32,6 +33,12 @@ employee: Employee;
 
   onSave(): void {
     console.log('Guardado', this.employeeForm.value);
+    if (this.employeeForm.valid) {
+      const employee = this.employeeForm.value;
+      const employeeId = this.employee?.id || null;
+      this.employeesSvc.onSaveEmployee(employee, employeeId);
+      this.employeeForm.reset();
+    }
   }
 
   private initForm():void {
